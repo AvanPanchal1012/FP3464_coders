@@ -125,7 +125,7 @@ public class StudentView {
         //------------------------------------------------------
 
         //----------------------SETVALUES---------------------------
-        int[] arr = stat(4);
+        int[] arr = stat(id);
         ttbox.setText(String.valueOf(arr[0]));
         atbox.setText(String.valueOf(arr[1]));
         mtbox.setText(String.valueOf(arr[2]));
@@ -149,7 +149,7 @@ public class StudentView {
         //ENTER PORT, USER, PASSWORD.
         String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "Sagar2612$";
+        String pass = "1012";
         con = DriverManager.getConnection(url, user, pass);
         String str = "SELECT name FROM user WHERE id = "+id;
         Statement stm = con.createStatement();
@@ -183,7 +183,8 @@ public class StudentView {
         rst.next();
         x[2] = rst.getInt("abs");
         x[0] = x[1] + x[2];
-        x[3] = (x[1]*100)/x[0];
+//        x[3] = (x[1]*100)/x[0];
+        x[3] = (x[0] != 0) ? (x[1]*100)/x[0] : 0;
         tblupdt(id);
         return x;
     }

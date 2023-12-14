@@ -361,7 +361,7 @@ public class Students {
         String str1 = "SELECT user.id, user.username, students.name FROM user, students where user.id = students.id";
         String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "Sagar2612$";
+        String pass = "1012";
         con = DriverManager.getConnection(url, user, pass);
         Statement stm = con.createStatement();
         ResultSet rst = stm.executeQuery(str1);

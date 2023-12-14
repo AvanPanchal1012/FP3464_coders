@@ -217,9 +217,9 @@ public class AddAttendance {
 
     public void connect() throws SQLException {
         //ENTER PORT, USER, PASSWORD.
-        String url = "jdbc:mysql://127.0.0.1:3306/attendance";
+        String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "admin@123";
+        String pass = "1012";
         con = DriverManager.getConnection(url, user, pass);
     }
 

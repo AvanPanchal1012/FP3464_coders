@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,9 +22,9 @@ public class Login{
     public void loginView() {
         JFrame frame = new JFrame();
         Font text = new Font("Times New Roman", Font.PLAIN, 20);
-//        Home hm = new Home();
-//        TeacherView tview = new TeacherView();
-//        Attendance.StudentView sview = new StudentView();
+        Home hm = new Home();
+        TeacherView tview = new TeacherView();
+        StudentView sview = new StudentView();
 
         //-------------------------LOGO--------------------------
         JLabel attendance = new JLabel("ATTENDANCE");
@@ -151,17 +148,15 @@ public class Login{
                     }
                     else {
                         if(res == 1)
-//                            hm.homeView(usr);
-//                        else if(res == 2)
-//                            tview.tcView(usr);
-//                        else if (res == 3)
-//                            sview.stView(usr);
-                            frame.dispose();
+                            hm.homeView(usr);
+                        else if(res == 2)
+                            tview.tcView(usr);
+                        else if (res == 3)
+                            sview.stView(usr);
+                        frame.dispose();
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
                 }
             }
         });
@@ -180,12 +175,11 @@ public class Login{
         //--------------------------------------------------------------
     }
 
-    public int dbCheck(String name, String password) throws SQLException, ClassNotFoundException {
+    public int dbCheck(String name, String password) throws SQLException {
         //ENTER PORT, USER, PASSWORD.
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://127.0.0.1:3306/attendance";
+        String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "Sagar2612$";
+        String pass = "1012";
         String str = "SELECT * FROM user WHERE username = '" + name + "'";
         Connection con = DriverManager.getConnection(url, user, pass);
         Statement stm = con.createStatement();

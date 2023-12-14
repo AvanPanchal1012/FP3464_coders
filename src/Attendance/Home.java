@@ -23,7 +23,7 @@ public class Home{
     public void homeView(int id) throws SQLException {
         JFrame frame = new JFrame();
         Font btn = new Font("Times New Roman", Font.BOLD, 20);
-//        Admin adm = new Admin();
+        Admin adm = new Admin();
 
         //------------------------CLOSE---------------------------
         JLabel x = new JLabel("X");
@@ -95,17 +95,17 @@ public class Home{
         addattendance.setBackground(Color.decode("#DEE4E7"));
         addattendance.setForeground(Color.decode("#37474F"));
         frame.add(addattendance);
-//        addattendance.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                AddAttendance addatt = new AddAttendance();
-//                try {
-//                    addatt.addView();
-//                } catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//        });
+        addattendance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddAttendance addatt = new AddAttendance();
+                try {
+                    addatt.addView();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         //----------------------------------------------------------
 
         //----------------------EDITATTENDANCE----------------------------
@@ -115,17 +115,17 @@ public class Home{
         editattendance.setBackground(Color.decode("#DEE4E7"));
         editattendance.setForeground(Color.decode("#37474F"));
         frame.add(editattendance);
-//        editattendance.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                EditAttendance editatt = new EditAttendance();
-//                try {
-//                    editatt.editView();
-//                } catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//        });
+        editattendance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditAttendance editatt = new EditAttendance();
+                try {
+                    editatt.editView();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         //----------------------------------------------------------
 
         //----------------------TEACHERS----------------------------
@@ -135,17 +135,17 @@ public class Home{
         teacher.setBackground(Color.decode("#DEE4E7"));
         teacher.setForeground(Color.decode("#37474F"));
         frame.add(teacher);
-//        teacher.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Teachers teacher = new Teachers();
-//                try {
-//                    teacher.teachersView();
-//                } catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//        });
+        teacher.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Teachers teacher = new Teachers();
+                try {
+                    teacher.teachersView();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         //----------------------------------------------------------
 
         //----------------------USER----------------------------
@@ -155,17 +155,17 @@ public class Home{
         admin.setBackground(Color.decode("#DEE4E7"));
         admin.setForeground(Color.decode("#37474F"));
         frame.add(admin);
-//        admin.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    adm.adminView();
-//                }
-//                catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//        });
+        admin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    adm.adminView();
+                }
+                catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         //----------------------------------------------------------
 
         //----------------------CLASS----------------------------
@@ -178,8 +178,8 @@ public class Home{
         classes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Class classroom = new Class();
-//                classroom.classView();
+                Class classroom = new Class();
+                classroom.classView();
             }
         });
         //----------------------------------------------------------
@@ -201,7 +201,7 @@ public class Home{
         //ENTER PORT, USER, PASSWORD.
         String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "Sagar2612$";
+        String pass = "1012";
         Connection con = DriverManager.getConnection(url, user, pass);
         String str = "SELECT name FROM user WHERE id = "+id;
         Statement stm = con.createStatement();

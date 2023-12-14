@@ -21,21 +21,20 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class Admin {
-
+public class Class{
     DefaultTableModel model = new DefaultTableModel();
-    Font text = new Font("Times New Roman", Font.PLAIN, 18);
     Connection con;
     int check;
     JButton edit;
     JButton delete;
     JButton add;
 
-    public void adminView() throws NumberFormatException, SQLException {
+    public void classView() {
         JFrame frame = new JFrame();
+        Font text = new Font("Times New Roman", Font.PLAIN, 18);
         Font btn = new Font("Times New Roman", Font.BOLD, 20);
 
-        // ------------------------CLOSE---------------------------
+        //------------------------CLOSE---------------------------
         JLabel x = new JLabel("X");
         x.setForeground(Color.decode("#37474F"));
         x.setBounds(965, 10, 100, 20);
@@ -47,9 +46,9 @@ public class Admin {
                 System.exit(0);
             }
         });
-        // ----------------------------------------------------------
+        //----------------------------------------------------------
 
-        // -----------------------BACK---------------------------------
+        //-----------------------BACK---------------------------------
         JLabel back = new JLabel("< BACK");
         back.setForeground(Color.decode("#37474F"));
         back.setFont(new Font("Times New Roman", Font.BOLD, 17));
@@ -61,96 +60,46 @@ public class Admin {
                 frame.dispose();
             }
         });
-        // --------------------------------------------------------------
+        //--------------------------------------------------------------
 
-        // ------------------Panel----------------------------------
-        JPanel panel = new JPanel();
+        //------------------Panel----------------------------------
+        JPanel panel = new  JPanel();
         panel.setBounds(0, 0, 1000, 35);
         panel.setBackground(Color.decode("#DEE4E7"));
         frame.add(panel);
-        // ---------------------------------------------------------
+        //---------------------------------------------------------
 
-        // ----------------TABLE---------------------------------
-        @SuppressWarnings("serial")
-        JTable table = new JTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        model = (DefaultTableModel) table.getModel();
-        model.addColumn("ID");
-        model.addColumn("USERNAME");
-        model.addColumn("NAME");
-        tblupdt();
-        table.getColumnModel().getColumn(0).setPreferredWidth(50);
-        table.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
-        JScrollPane scPane = new JScrollPane(table);
-        scPane.setBounds(500, 50, 480, 525);
-        frame.add(scPane);
-        // ------------------------------------------------------
-
-        // --------------------ID-----------------------------------
+        //--------------------ID-----------------------------------
         JLabel id = new JLabel("ID : ");
         id.setFont(text);
-        id.setBounds(25, 60, 40, 20);
+        id.setBounds(25, 150, 40, 20);
         id.setForeground(Color.decode("#DEE4E7"));
         frame.add(id);
-        JTextField idbox = new JTextField();
-        idbox.setBounds(60, 60, 50, 25);
+        JTextField idbox= new JTextField();
+        idbox.setBounds(60, 150, 50, 25);
         idbox.setBackground(Color.decode("#DEE4E7"));
         idbox.setFont(text);
         idbox.setForeground(Color.decode("#37474F"));
         idbox.setEditable(false);
         frame.add(idbox);
-        // --------------------------------------------------------
+        //--------------------------------------------------------
 
-        // ---------------------USERNAME-------------------------
-        JLabel user = new JLabel("USERNAME : ");
-        user.setFont(text);
-        user.setBounds(25, 120, 150, 20);
-        user.setForeground(Color.decode("#DEE4E7"));
-        frame.add(user);
-        JTextField username = new JTextField();
-        username.setBounds(25, 160, 400, 35);
-        username.setBackground(Color.decode("#DEE4E7"));
-        username.setFont(text);
-        username.setForeground(Color.decode("#37474F"));
-        username.setEditable(false);
-        frame.add(username);
-        // ------------------------------------------------------
-
-        // -------------------NAME----------------------------------
+        //-------------------NAME----------------------------------
         JLabel nm = new JLabel("NAME : ");
         nm.setFont(text);
         nm.setBounds(25, 240, 150, 20);
         nm.setForeground(Color.decode("#DEE4E7"));
         frame.add(nm);
-        JTextField name = new JTextField();
+        JTextField name= new JTextField();
         name.setBounds(25, 270, 400, 35);
         name.setBackground(Color.decode("#DEE4E7"));
         name.setFont(text);
         name.setForeground(Color.decode("#37474F"));
         name.setEditable(false);
         frame.add(name);
-        // --------------------------------------------------------
+        //--------------------------------------------------------
 
-        // ---------------------PASS--------------------------------
-        JLabel pass = new JLabel("PASSWORD : ");
-        pass.setFont(text);
-        pass.setBounds(25, 350, 150, 20);
-        pass.setForeground(Color.decode("#DEE4E7"));
-        frame.add(pass);
-        JTextField password = new JTextField();
-        password.setBounds(25, 380, 400, 35);
-        password.setBackground(Color.decode("#DEE4E7"));
-        password.setFont(text);
-        password.setForeground(Color.decode("#37474F"));
-        password.setEditable(false);
-        frame.add(password);
-        // -----------------------------------------------------------
-
-        // --------------------SAVEBUTTON---------------------------
+        //--------------------SAVEBUTTON---------------------------
         JButton save = new JButton("SAVE");
         save.setBounds(25, 500, 125, 50);
         save.setFont(btn);
@@ -161,22 +110,20 @@ public class Admin {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (check == 1) {
+                if(check == 1) {
                     try {
-                        adder(Integer.parseInt(idbox.getText()), username.getText(), name.getText(),
-                                password.getText());
-                    } catch (SQLException e1) {
+                        adder(Integer.parseInt(idbox.getText()), name.getText());
+                    }
+                    catch (SQLException e1) {
                         e1.printStackTrace();
                     }
-                } else if (check == 2) {
+                }
+                else if(check == 2) {
                     save.setEnabled(false);
                     try {
-                        if (password.getText().equals(""))
-                            editor(Integer.parseInt(idbox.getText()), username.getText(), name.getText());
-                        else
-                            editor(Integer.parseInt(idbox.getText()), username.getText(), name.getText(),
-                                    password.getText());
-                    } catch (SQLException e1) {
+                        editor(Integer.parseInt(idbox.getText()), name.getText());
+                    }
+                    catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 }
@@ -185,9 +132,7 @@ public class Admin {
                     edit.setEnabled(false);
                     delete.setEnabled(false);
                     name.setText("");
-                    username.setText("");
-                    password.setText("");
-                    while (model.getRowCount() > 0)
+                    while(model.getRowCount() > 0)
                         model.removeRow(0);
                     tblupdt();
                 } catch (SQLException e1) {
@@ -195,9 +140,9 @@ public class Admin {
                 }
             }
         });
-        // -------------------------------------------------------
+        //-------------------------------------------------------
 
-        // ----------------------EDITBUTTON-----------------------
+        //----------------------EDITBUTTON-----------------------
         edit = new JButton("EDIT");
         edit.setBounds(175, 500, 125, 50);
         edit.setFont(btn);
@@ -211,14 +156,12 @@ public class Admin {
                 edit.setEnabled(false);
                 save.setEnabled(true);
                 check = 2;
-                username.setEditable(true);
                 name.setEditable(true);
-                password.setEditable(true);
             }
         });
-        // -------------------------------------------------------
+        //-------------------------------------------------------
 
-        // --------------------ADDBUTTON-------------------------
+        //--------------------ADDBUTTON-------------------------
         add = new JButton("ADD");
         add.setBounds(325, 500, 125, 50);
         add.setFont(btn);
@@ -229,11 +172,9 @@ public class Admin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 add.setEnabled(false);
-                save.setEnabled(true);
                 delete.setEnabled(false);
-                username.setEditable(true);
+                save.setEnabled(true);
                 name.setEditable(true);
-                password.setEditable(true);
                 check = 1;
                 try {
                     idbox.setText(String.valueOf(getid()));
@@ -242,9 +183,9 @@ public class Admin {
                 }
             }
         });
-        // ------------------------------------------------------
+        //------------------------------------------------------
 
-        // ------------------------DELETEBUTTON-----------------------
+        //------------------------DELETEBUTTON-----------------------
         delete = new JButton("DELETE");
         delete.setBounds(175, 432, 125, 50);
         delete.setFont(btn);
@@ -255,48 +196,58 @@ public class Admin {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                username.setEditable(false);
                 name.setEditable(false);
-                password.setEditable(false);
                 edit.setEnabled(false);
                 add.setEnabled(true);
                 try {
                     deleter(Integer.parseInt(idbox.getText()));
                     idbox.setText(String.valueOf(getid()));
                     name.setText("");
-                    username.setText("");
-                    password.setText("");
-                    while (model.getRowCount() > 0)
+                    while(model.getRowCount() > 0)
                         model.removeRow(0);
                     tblupdt();
-                } catch (SQLException e1) {
+                }
+                catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         });
-        // ------------------------------------------------------------
+        //------------------------------------------------------------
 
-        // -----------------TABLE ACTION----------------------------
+        //----------------TABLE---------------------------------
+        @SuppressWarnings("serial")
+        JTable table=new JTable(){
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        };
+        model = (DefaultTableModel)table.getModel();
+        model.addColumn("ID");
+        model.addColumn("NAME");
+        tblupdt();
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table.getColumnModel().getColumn(1).setPreferredWidth(300);
+        JScrollPane scPane=new JScrollPane(table);
+        scPane.setBounds(500, 50, 480, 525);
+        frame.add(scPane);
+        //------------------------------------------------------
+
+        //-----------------TABLE ACTION----------------------------
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = table.getSelectedRow();
-                password.setText("");
                 idbox.setText(String.valueOf(table.getModel().getValueAt(row, 0)));
-                username.setText(String.valueOf(table.getModel().getValueAt(row, 1)));
-                name.setText(String.valueOf(table.getModel().getValueAt(row, 2)));
+                name.setText(String.valueOf(table.getModel().getValueAt(row, 1)));
                 edit.setEnabled(true);
-                username.setEditable(false);
-                password.setEditable(false);
-                name.setEditable(false);
                 save.setEnabled(false);
                 delete.setEnabled(true);
             }
         });
-        // -------------------------------------------------------------
+        //-------------------------------------------------------------
 
-        // -------------------------------------------------------
-        frame.setSize(1000, 600);
+        //-------------------------------------------------------
+        frame.setSize(1000,600);
         frame.setResizable(false);
         frame.setLayout(null);
         frame.setUndecorated(true);
@@ -305,26 +256,36 @@ public class Admin {
         frame.setFocusable(true);
         frame.getContentPane().setBackground(Color.decode("#37474F"));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // --------------------------------------------------------------
+        //--------------------------------------------------------------
     }
 
     public void tblupdt() {
         try {
             ResultSet res = dbSearch();
-            for (int i = 0; res.next(); i++) {
+            for(int i=0; res.next(); i++) {
                 model.addRow(new Object[0]);
                 model.setValueAt(res.getInt("id"), i, 0);
-                model.setValueAt(res.getString("username"), i, 1);
-                model.setValueAt(res.getString("name"), i, 2);
+                model.setValueAt(res.getString("name"), i, 1);
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
     }
 
+    public int getid() throws SQLException {
+        Statement stm = con.createStatement();
+        ResultSet rst = stm.executeQuery("SELECT MAX(id) from class");
+        if(rst.next()) {
+            return rst.getInt("MAX(id)")+1;
+        }
+        else {
+            return 1;
+        }
+    }
+
     public ResultSet dbSearch() throws SQLException {
-        // ENTER PORT, USER, PASSWORD.
-        String str1 = "SELECT * FROM user WHERE prio = 1";
+        //ENTER PORT, USER, PASSWORD.
+        String str1 = "SELECT * FROM class";
         String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
         String pass = "1012";
@@ -334,37 +295,19 @@ public class Admin {
         return rst;
     }
 
-    public int getid() throws SQLException {
-        Statement stm = con.createStatement();
-        ResultSet rst = stm.executeQuery("SELECT MAX(id) from user");
-        if (rst.next()) {
-            return rst.getInt("MAX(id)") + 1;
-        } else {
-            return 1;
-        }
-    }
-
-    public void adder(int id, String user, String name, String password) throws SQLException {
-        String adding = "insert into user values (" + id + ", '" + user + "', '" + name + "', '" + password + "', 1)";
+    public void adder(int id, String name) throws SQLException {
+        String adding = "insert into class values ("+id+", '"+name+"')";
         Statement stm = con.createStatement();
         stm.executeUpdate(adding);
     }
 
     public void deleter(int id) throws SQLException {
-        String del = "DELETE FROM user WHERE id = " + id;
+        String del = "DELETE FROM class WHERE id = "+id;
         Statement stm = con.createStatement();
         stm.executeUpdate(del);
     }
-
-    public void editor(int id, String username, String name, String password) throws SQLException {
-        String update = "UPDATE user SET username = '" + username + "', name = '" + name + "', password = '" + password
-                + "'WHERE id = " + id;
-        Statement stm = con.createStatement();
-        stm.executeUpdate(update);
-    }
-
-    public void editor(int id, String username, String name) throws SQLException {
-        String update = "UPDATE user SET username = '" + username + "', name = '" + name + "' WHERE id = " + id;
+    public void editor(int id, String name) throws SQLException {
+        String update = "UPDATE class SET name = '"+name+"'WHERE id = "+id;
         Statement stm = con.createStatement();
         stm.executeUpdate(update);
     }

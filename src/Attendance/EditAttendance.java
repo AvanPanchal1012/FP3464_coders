@@ -237,7 +237,7 @@ public class EditAttendance {
         // ENTER PORT, USER, PASSWORD.
         String url = "jdbc:mysql://localhost:3306/attendance";
         String user = "root";
-        String pass = "password";
+        String pass = "1012";
         con = DriverManager.getConnection(url, user, pass);
     }
 
